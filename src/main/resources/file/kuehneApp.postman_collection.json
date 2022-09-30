@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "a0ec350e-201a-4a35-befc-8e0b34cd0ad9",
+		"name": "kuehneApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12192134"
+	},
+	"item": [
+		{
+			"name": "uploadCities",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/macuser/Work/kuehne-cities/src/main/resources/file/cities.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/city/upload-from-file",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"city",
+						"upload-from-file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/city",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCityByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/city/Tokyo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"city",
+						"Tokyo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCity",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"Tokyo\",\n    \"image\": \"No image\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/city/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"city",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

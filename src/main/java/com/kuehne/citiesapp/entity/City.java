@@ -1,14 +1,12 @@
 package com.kuehne.citiesapp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,12 +14,13 @@ import javax.persistence.*;
 public class City {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     long id;
 
     @NonNull
-    @Column(name = "name")
+    @Column(name = "name", length = 30)
     String name;
 
-    @Column(name = "image")
+    @Column(name = "image",columnDefinition="LONGTEXT")
     String image;
 }
