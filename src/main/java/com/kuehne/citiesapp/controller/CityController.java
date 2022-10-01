@@ -1,9 +1,10 @@
 package com.kuehne.citiesapp.controller;
 
+import com.kuehne.citiesapp.dto.CityDto;
+import com.kuehne.citiesapp.dto.CityListDto;
 import com.kuehne.citiesapp.entity.City;
 import com.kuehne.citiesapp.service.CityService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import static com.kuehne.citiesapp.constant.Constants.*;
 
 
 @RestController
@@ -24,13 +25,14 @@ public class CityController {
 
     @GetMapping(value = "/city", produces = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
-    public ResponseEntity<List<City>> getCities(@RequestHeader HttpHeaders headers) {
-        return ResponseEntity.ok().body(cityService.getCities());
+    public ResponseEntity<CityListDto> getCities(@RequestParam(defaultValue = CITY_PAGE_DEFAULT_PAGE) int page,
+                                                 @RequestParam(defaultValue = CITY_PAGE_SIZE) int size) {
+        return ResponseEntity.ok().body(cityService.getCities(page, size));
     }
 
     @GetMapping(value = "/city/{name}", produces = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
-    public ResponseEntity<City> getCity(@Valid @PathVariable String name) {
+    public ResponseEntity<CityDto> getCity(@Valid @PathVariable String name) {
         return ResponseEntity.ok().body(cityService.getCityByName(name));
     }
 
@@ -42,7 +44,7 @@ public class CityController {
 
     @PutMapping(value = "/city/update", produces = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
-    public ResponseEntity<City> updateCity(@RequestBody City city) {
+    public ResponseEntity<CityDto> updateCity(@RequestBody City city) {
         return ResponseEntity.ok().body(cityService.updateCity(city));
     }
 }
