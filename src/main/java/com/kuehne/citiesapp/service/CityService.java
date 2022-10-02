@@ -43,7 +43,10 @@ public class CityService {
      * @return
      */
     public CityListDto getCityByName(String name) {
-        return buildCityListDtoOnSearch(cityRepository.findByName(name));
+        City searchResult = cityRepository.findByName(name);
+        log.info("Search city with name - {} , receive result {}", name, searchResult.toString());
+
+        return buildCityListDtoOnSearch(searchResult);
     }
 
     /**
@@ -54,10 +57,11 @@ public class CityService {
     @SneakyThrows
     public String uploadCitiesFromFile(MultipartFile file) {
         if (file.isEmpty()) {
+            log.error("Error during bulk upload to populate db with cities");
             throw new IOException("Upload failed - wrong file, or file format");
         } else {
             cityRepository.saveAll(FileUtil.processUploadedFile(file));
-            return "file-upload-status";
+            return "File-uploaded-successfully";
         }
     }
 

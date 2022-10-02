@@ -8,6 +8,9 @@
 	"item": [
 		{
 			"name": "uploadCities",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -44,7 +47,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/city",
+					"raw": "http://localhost:8080/api/v1/city?page=0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -54,6 +57,12 @@
 						"api",
 						"v1",
 						"city"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
 					]
 				}
 			},
@@ -63,9 +72,16 @@
 			"name": "getCityByName",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "name",
+						"value": "Tokyo",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/city/Tokyo",
+					"raw": "http://localhost:8080/api/v1/city/search?name=Tokyo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,7 +91,13 @@
 						"api",
 						"v1",
 						"city",
-						"Tokyo"
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Tokyo"
+						}
 					]
 				}
 			},

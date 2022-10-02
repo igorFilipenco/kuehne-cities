@@ -7,7 +7,6 @@ import com.kuehne.citiesapp.service.CityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 
