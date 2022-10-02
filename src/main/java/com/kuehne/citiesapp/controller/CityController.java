@@ -30,15 +30,15 @@ public class CityController {
         return ResponseEntity.ok().body(cityService.getCities(page, size));
     }
 
-    @GetMapping(value = "/city/{name}", produces = {
+    @GetMapping(value = "/city/search", produces = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
-    public ResponseEntity<CityDto> getCity(@Valid @PathVariable String name) {
+    public ResponseEntity<CityListDto> getCity(@Valid @RequestParam String name) {
         return ResponseEntity.ok().body(cityService.getCityByName(name));
     }
 
     @PostMapping(value = "/city/upload-from-file", produces = {
             MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE})
-    public ResponseEntity<String> uploadCitiesFromFile(@Validated @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadCitiesFromFile(@Valid @RequestParam("file") MultipartFile file) {
         return ResponseEntity.ok().body(cityService.uploadCitiesFromFile(file));
     }
 
